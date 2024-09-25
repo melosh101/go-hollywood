@@ -10,6 +10,8 @@
 name: Publish Docker image
 
 on:
+  push:
+    branches: ["main"]
   release:
     types: [published]
 
@@ -29,6 +31,7 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
+          registry: docker.milasholsting.dk
           username: ${{ secrets.REPO_USERNAME }}
           password: ${{ secrets.REPO_PASSWD }}
 

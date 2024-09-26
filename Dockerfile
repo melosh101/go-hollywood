@@ -14,7 +14,7 @@ RUN  yarn
 # Rebuild the source code only when needed
 FROM base AS builder
 ENV SKIP_ENV_VALIDATION=true
-
+ENV DATABASE_URL="./db.sqlite"
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .

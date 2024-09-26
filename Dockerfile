@@ -47,14 +47,13 @@ RUN chown nextjs:nodejs .next
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
+COPY --from=builder /data/db.sqlite ./db.sqlite
 USER nextjs
 
 EXPOSE 3000
 
 ENV PORT=3000
 
-RUN yarn run db:push
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output

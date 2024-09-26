@@ -24,7 +24,7 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN if [ ! -f "/data/db.sqlite" ]; then mkdir /data; yarn run db:push; fi
+RUN yarn run db:push
 RUN yarn run build
 # Production image, copy all the files and run next
 FROM base AS runner

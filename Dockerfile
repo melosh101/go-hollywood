@@ -54,7 +54,6 @@ EXPOSE 3000
 
 ENV PORT=3000
 
-RUN mkdir /data
 RUN yarn run db:push
 
 # server.js is created by next build from the standalone output

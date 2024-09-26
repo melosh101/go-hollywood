@@ -10,7 +10,7 @@ export default async function Home() {
     <HydrateClient>
       <Navbar />
       <main className="flex-grow items-center justify-center dark:bg-black">
-        <img src="/tmp.jpg" alt=""  className="p-10 pt-20 md:w-full md:px-96 md:pt-40"/>
+        <img src="/tmp.jpg" alt=""  className="mx-auto mt-20 w-[80%] md:mt-10 md:mx-auto md:mt-40 shadow-lg dark:shadow-white"/>
       </main>
       <Footer/>
     </HydrateClient>

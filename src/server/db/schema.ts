@@ -94,3 +94,16 @@ export const verificationTokens = createTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 );
+
+export const movieRatings = createTable(
+  "movie_rating",
+  {
+    id: text("id", { length: 255 })
+      .notNull()
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    userId: text("user_id", { length: 255 })
+      .notNull(),
+    rating: int("rating").notNull(),
+  }
+);

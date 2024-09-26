@@ -14,7 +14,7 @@ RUN  yarn
 # Rebuild the source code only when needed
 FROM base AS builder
 ENV SKIP_ENV_VALIDATION=true
-ENV DATABASE_URL="./db.sqlite"
+ENV DATABASE_URL="file:/data/db.sqlite"
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -25,6 +25,7 @@ COPY . .
 # ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN yarn run build
+RUN if [ ! -f "/data/db.sqlite"]; then yarn run db:push; fi
 
 # Production image, copy all the files and run next
 FROM base AS runner

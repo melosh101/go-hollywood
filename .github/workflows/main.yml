@@ -50,8 +50,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.REGISTRY_URL }}/go-hollywood:latest
-          cache-from: 'type=registry,ref=${{ secrets.REGISTRY_URL }}/my-project/server:buildcache'
-          cache-to: 'type=registry,ref=${{ secrets.REGISTRY_URL }}/my-project/server:buildcache,mode=max'
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Generate artifact attestation

@@ -39,7 +39,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: docker.milasholsting.dk/go-hollywood
+          images: go-hollywood
+        
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -53,6 +54,6 @@ jobs:
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+          subject-name: docker.milasholsting.dk/go-hollywood
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true

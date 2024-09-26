@@ -13,6 +13,8 @@ RUN  yarn
 
 # Rebuild the source code only when needed
 FROM base AS builder
+ENV SKIP_ENV_VALIDATION=true
+
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -29,7 +31,6 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV SKIP_ENV_VALIDATION=true
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED=1
 

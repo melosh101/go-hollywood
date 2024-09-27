@@ -8,11 +8,9 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <Navbar />
       <main className="flex-grow items-center justify-center dark:bg-black">
         <img src="/tmp.jpg" alt=""  className="mx-auto mt-20 w-[80%] md:mx-auto md:mt-9 shadow-lg dark:shadow-white"/>
       </main>
-      <Footer/>
     </HydrateClient>
   );
 }

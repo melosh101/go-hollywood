@@ -21,10 +21,12 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className="min-h-screen flex flex-col">
+        <Navbar/>
         <TRPCReactProvider>
-
           {children}
         </TRPCReactProvider>
+        <Footer/>
+
       </body>
     </html>
     </ClerkProvider>

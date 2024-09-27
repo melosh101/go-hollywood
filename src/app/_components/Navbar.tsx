@@ -1,14 +1,14 @@
 "use client"
-import {Menu, X as Close} from "lucide-react"
+import { SignedIn, UserButton } from "@clerk/nextjs";
+import { Menu, X as Close } from "lucide-react"
 import Link from "next/link";
 import { useRef, useState } from "react";
-
+import { BrowserView, MobileView } from "react-device-detect";
 export default function Navbar() {
     const menuBlock = useRef<HTMLDivElement>(null);
     const [menuHidden, setMenuhidden] = useState(true);
-
     const toggleMenu = () => {
-        if(!menuBlock.current) return;
+        if (!menuBlock.current) return;
         console.log(menuHidden)
         if (menuHidden) {
             menuBlock.current?.classList.remove("w-0");
@@ -21,17 +21,39 @@ export default function Navbar() {
         }
     }
 
-    return <nav className="flex dark:bg-black dark:text-white justify-between">
-        <img alt="Banshee Productions" src={"/nobg_short_banner.svg"}  className="h-12"/>
-        <button onClick={toggleMenu}>
-            <Menu className="size-12 hover:cursor-pointer" />
-        </button>
-        <div className="fixed flex flex-col text-center z-10 right-0 top-0 h-screen w-0 bg-slate-800 overflow-x-hidden transition-all duration-300 ease-in"  ref={menuBlock}>
-            <Close className="absolute size-10 top-2 left-2" onClick={toggleMenu}/>
+    return (<>
+        <MobileView>
+            <nav className="flex dark:bg-black dark:text-white justify-between">
+                <img alt="Banshee Productions" src={"/nobg_short_banner.svg"} className="h-12" />
+                <button onClick={toggleMenu}>
+                    <Menu className="size-12 hover:cursor-pointer" />
+                </button>
+                <div className="fixed flex flex-col text-center z-10 right-0 top-0 h-screen w-0 bg-slate-800 overflow-x-hidden transition-all duration-300 ease-in" ref={menuBlock}>
+                    <Close className="absolute size-10 top-2 left-2" onClick={toggleMenu} />
 
-            <Link prefetch href={"/studio"} className="pt-12">Studio</Link>
-            <Link prefetch href={"/film"}>Film</Link>
-            <Link prefetch href={"/billeter"}>Billeter</Link>
-        </div>
-    </nav>
+                    <Link prefetch href={"/studio"} className="pt-12">Studio</Link>
+                    <Link prefetch href={"/film"}>Film</Link>
+                    <Link prefetch href={"/billeter"}>Billeter</Link>
+                </div>
+
+            </nav>
+        </MobileView>
+        <BrowserView >
+            <nav className="flex dark:bg-black dark:text-white justify-between">
+                <img alt="Banshee Productions" src={"/nobg_short_banner.svg"} className="h-12" />
+                <div>
+                    <Link prefetch href={"/studio"} className="">Studio</Link>
+                    <Link prefetch href={"/film"}>Film</Link>
+                    <Link prefetch href={"/billeter"}>Billeter</Link>
+                </div>
+                <div>
+                    <SignedIn>
+                        <UserButton />
+                    </SignedIn>
+                </div>
+
+            </nav>
+        </BrowserView>
+    </>
+    )
 }

@@ -3,10 +3,11 @@ import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { eq } from "drizzle-orm";
 import { movieRatings } from "~/server/db/schema";
 import { TRPCError } from "@trpc/server";
+import { roundByStep } from "~/lib/utils";
 
 export const ratingsRouter = createTRPCRouter({
     addRating: protectedProcedure
-    .input(z.object({rating: z.number()}))
+    .input(z.object({rating: z.number().min(0).max(5)}))
     .mutation(async ({input, ctx}) => {
         const user = ctx.db.query.movieRatings.findFirst({
             where: eq(movieRatings.rating, input.rating)
@@ -36,8 +37,17 @@ export const ratingsRouter = createTRPCRouter({
 
     getRating: publicProcedure
     .query(async ({input, ctx}) => {
-        const rating = await ctx.db.query.movieRatings.findMany();
-        
-        return rating;
+        const ratings = await ctx.db.query.movieRatings.findMany();
+        let userRating = 0;
+        let sum = 0;
+        for (let i of ratings) {
+            sum += i.rating;
+            if(i.userId === ctx.session.userId) userRating = i.rating
+        }
+        return {
+            rating: roundByStep(sum/ratings.length, 0.5),
+            rating_count: ratings.length,
+            userRating,
+        };
     })
 });

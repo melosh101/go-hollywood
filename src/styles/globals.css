@@ -64,3 +64,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+.cl-avatarBox {
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 0.5rem;
+}
+
+.cl-signinBox {
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 0.5rem;
+}
+
+
+.cl-rootBox {
+  margin-top: auto;
+  margin-bottom: auto;
+}

@@ -39,14 +39,14 @@ export default function Navbar() {
             </nav>
         </MobileView>
         <BrowserView >
-            <nav className="flex dark:bg-black dark:text-white justify-between">
-                <img alt="Banshee Productions" src={"/nobg_short_banner.svg"} className="h-12" />
-                <div>
+            <nav className="flex dark:bg-black  dark:text-white justify-between ">
+                <img alt="Banshee Productions" src={"/nobg_short_banner.svg"} className="flex h-12" />
+                <div className="flex gap-5 my-auto -ml-56 h-24">
                     <Link prefetch href={"/studio"} className="">Studio</Link>
                     <Link prefetch href={"/film"}>Film</Link>
                     <Link prefetch href={"/billeter"}>Billeter</Link>
                 </div>
-                <div>
+                <div className=" h-4">
                     <SignedIn>
                         <UserButton />
                     </SignedIn>

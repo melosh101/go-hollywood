@@ -7,13 +7,19 @@
  * need to use are documented accordingly near the end.
  */
 
-import { getAuth } from "@clerk/nextjs/server";
+import { ClerkMiddlewareAuthObject, getAuth } from "@clerk/nextjs/server";
 import { initTRPC, TRPCError } from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
 import superjson from "superjson";
+import { CreateContextOptions } from "vm";
 import { ZodError } from "zod";
 
 import { db } from "~/server/db";
+
+
+import { createServerSideHelpers } from '@trpc/react-query/server';
+import { appRouter } from "./root";
+
 
 /**
  * 1. CONTEXT
@@ -27,15 +33,17 @@ import { db } from "~/server/db";
  *
  * @see https://trpc.io/docs/server/context
  */
-export const createTRPCContext = async (opts: trpcNext.CreateNextContextOptions) => {
-  const session = getAuth(opts.req);
 
+export const createTRPCContext = async (opts: { headers: Headers }) => {
+  const session = {hello: "world", userId: "none"};
+  
   return {
     db,
     session,
     ...opts,
   };
 };
+
 
 /**
  * 2. INITIALIZATION

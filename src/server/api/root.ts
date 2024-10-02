@@ -1,5 +1,4 @@
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
-import { authRouter } from "./routers/auth";
 import { ratingsRouter } from "./routers/ratings";
 
 /**
@@ -8,7 +7,6 @@ import { ratingsRouter } from "./routers/ratings";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  auth: authRouter,
   ratings: ratingsRouter,
 });
 

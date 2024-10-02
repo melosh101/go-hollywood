@@ -13,6 +13,6 @@ export default function Ratings() {
         starArray.push(<img src="/stars/Star.svg"/>)
     }
     return <>
-    
+        {JSON.stringify(rating)}
     </>
 }

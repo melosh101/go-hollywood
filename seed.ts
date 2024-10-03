@@ -22,6 +22,7 @@ type newRating = typeof movieRatings.$inferInsert
 for(let i = 0; i<=100; i++) {
     console.log(`inserting i=${i}`)
     const seed: newRating = {
+        id: 1,
         userId: faker.string.uuid(),
         rating: faker.number.float({max: 5, multipleOf: 0.5})
     }

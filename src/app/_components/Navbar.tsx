@@ -24,7 +24,7 @@ export default function Navbar() {
     return (<>
         <MobileView>
             <nav className="flex dark:bg-black dark:text-white justify-between">
-                <img alt="Banshee Productions" src={"/nobg_short_banner.svg"} className="h-12" />
+                <a href="/"><img alt="Banshee Productions" src={"/nobg_short_banner.svg"} className="h-12" /></a>
                 <button onClick={toggleMenu}>
                     <Menu className="size-12 hover:cursor-pointer" />
                 </button>
@@ -39,8 +39,8 @@ export default function Navbar() {
             </nav>
         </MobileView>
         <BrowserView >
-            <nav className="flex dark:bg-black  dark:text-white justify-between">
-                <img alt="Banshee Productions" src={"/nobg_short_banner.svg"} className="flex h-12" />
+            <nav className="flex bg-black  text-white justify-between">
+                <a href="/"><img alt="Banshee Productions" src={"/nobg_short_banner.svg"} className="flex h-12" /></a>
                 <div className="flex gap-5 my-auto -ml-40">
                     <Link prefetch href={"/studio"} className="">Studio</Link>
                     <Link prefetch href={"/film"}>Film</Link>

@@ -7,7 +7,6 @@ export default async function FilmPage() {
             <article className="mt-48 w-[60%] h-10 grid grid-cols-2">
                 <div className="flex flex-col w-[50%]">
                     <h1 className="font-bold text-2xl">Hello world</h1>
-                    <Ratings/>
                     <section>
                      en gyser film om programering   
                     </section>

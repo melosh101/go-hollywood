@@ -4,15 +4,23 @@ import { api } from "~/trpc/react"
 
 export default function Ratings() {
     const rating = api.ratings.getRating.useQuery();
-    if(!rating.isSuccess) {
+    void api.ratings.getRating.usePrefetchQuery()
+    let starArray = []
+
+    if(!rating.data) {
         return <li>loading ratings</li>
     }
-    rating
-    let starArray = []
     for (let i = 0; i < Math.round(rating.data.rating); i++) {
+        starArray.push(<img src="/stars/Star_filled.svg"/>)
+    }
+
+    const missing = 5-starArray.length;
+
+    for (let i = 0; i <= missing; i++) {
         starArray.push(<img src="/stars/Star.svg"/>)
     }
     return <>
-        {JSON.stringify(rating)}
+        
+        {starArray.map((star) => star)}
     </>
 }

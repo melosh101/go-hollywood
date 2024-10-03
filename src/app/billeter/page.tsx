@@ -469,12 +469,10 @@ export default function BilleterPage() {
     )
   })
   return <HydrateClient>
-    <Navbar />
     <main className="flex-grow items-center justify-center dark:bg-black">
       <div className="w-96 mx-auto">
         {TheatersRender.map((TheaterRender) => TheaterRender)}
       </div>
     </main>
-    <Footer />
   </HydrateClient>
 }

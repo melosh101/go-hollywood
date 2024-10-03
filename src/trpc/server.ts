@@ -9,13 +9,14 @@ import { createTRPCContext } from "~/server/api/trpc";
 import { createQueryClient } from "./query-client";
 import SuperJSON from "superjson";
 import { createServerSideHelpers } from "@trpc/react-query/server";
+import { auth } from "@clerk/nextjs/server";
 
 /**
  * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
  * handling a tRPC call from a React Server Component.
  */
 const createContext = cache(() => {
-  const heads = new Headers(headers());
+  const heads = new Headers();
   heads.set("x-trpc-source", "rsc");
 
   return createTRPCContext({

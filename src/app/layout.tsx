@@ -6,7 +6,12 @@ import { type Metadata } from "next";
 import { TRPCReactProvider } from "~/trpc/react";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
-import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
+import localFont from "next/font/local";
+const bates = localFont({
+  src: "/Bates Shower.ttf",
+  display: "swap"
+})
 
 export const metadata: Metadata = {
   title: "Banshee productions",
@@ -20,7 +25,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col bg-black text-white">
         <Navbar/>
         <TRPCReactProvider>
           {children}

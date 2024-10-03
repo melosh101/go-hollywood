@@ -19,7 +19,7 @@ export const ratingsRouter = createTRPCRouter({
 
         const rating = await ctx.db.insert(movieRatings).values({
             rating: input.rating,
-            userId: ctx.session.userId
+            userId: ctx.session.id
         });
 
         return rating;
@@ -29,7 +29,7 @@ export const ratingsRouter = createTRPCRouter({
     getUserRating: protectedProcedure
     .query(async ({ctx}) => {
         const rating = await ctx.db.query.movieRatings.findMany({
-            where: eq(movieRatings.userId, ctx.session.userId)
+            where: eq(movieRatings.userId, ctx.session.id)
         });
 
         return rating;
@@ -42,8 +42,10 @@ export const ratingsRouter = createTRPCRouter({
         let sum = 0;
         for (let i of ratings) {
             sum += i.rating;
-            if(i.userId === ctx.session.userId) userRating = i.rating
+            if(i.userId === ctx.session?.id) userRating = i.rating
         }
+
+        console.log(ratings)
         return {
             rating: roundByStep(sum/ratings.length, 0.5),
             rating_count: ratings.length,

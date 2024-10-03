@@ -1,5 +1,5 @@
 {
-  "id": "5afde63e-fc15-4a4b-ba2d-fd4815a625c7",
+  "id": "0ebd3102-52fe-45e8-a8a4-ea4e176f5154",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -10,7 +10,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "serial",
           "primaryKey": true,
           "notNull": true
         },
@@ -37,7 +37,18 @@
   "schemas": {
     "go-hollywood": "go-hollywood"
   },
-  "sequences": {},
+  "sequences": {
+    "go-hollywood.movieRatingsID": {
+      "name": "movieRatingsID",
+      "schema": "go-hollywood",
+      "increment": "1",
+      "startWith": "1",
+      "minValue": "1",
+      "maxValue": "9223372036854775807",
+      "cache": "1",
+      "cycle": false
+    }
+  },
   "_meta": {
     "columns": {},
     "schemas": {},

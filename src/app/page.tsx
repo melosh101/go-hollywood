@@ -11,7 +11,7 @@ export default async function Home() {
     <HydrateClient>
       <main className="flex-grow items-center justify-center bg-black">
         <div className="mt-20">
-        <video controls preload="none" className="mx-auto mt-48 w-[80%] md:mx-auto md:mt-9 shadow-lg dark:shadow-white">
+        <video src="/trailer.mp4" controls preload="none" className="mx-auto mt-48 w-[80%] md:mx-auto md:mt-9 shadow-lg dark:shadow-white">
           <source src="/trailer.mp4" type="video/mp4"/>
           
         </video>

@@ -8,7 +8,8 @@ import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import localFont from "next/font/local";
-const bates = localFont({
+
+export const bates = localFont({
   src: "/Bates Shower.ttf",
   display: "swap"
 })
